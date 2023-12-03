@@ -7,11 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const txtStockQuantity = document.getElementById('stockQuantity')
   const btnSave = document.getElementById('btnSave')
   const btnReset = document.getElementById('btnReset')
-  const productId = window.location.search.split('=')[1].trim()
-  const apiProduct = new ApiProducts()
-
-
   async function onSave() {
+    const productId = window.location.search.split('=')[1].trim()
+    const apiProduct = new ApiProducts()
     const name = txtName.value
     const description = txtDescription.value
     const price = txtPrice.value
@@ -28,16 +26,20 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   async function onLoad() {
+    const productId = window.location.search.split('=')[1].trim()
+    const apiProduct = new ApiProducts()
     const product = await apiProduct.findProductById(productId)
     if (product && product.id) {
-      txtName.value = product.value
-      txtDescription.value = product.value
-      txtPrice.value = product.value
-      txtStockQuantity.value = product.value
-      metalTypeSelect.value = product.value
-      gemstoneSelect.value = product.value
+      txtName.value = product.name
+      txtDescription.value = product.description
+      txtPrice.value = product.price
+      txtStockQuantity.value = product.stockQuantity
+      metalTypeSelect.value = product.metalType
+      gemstoneSelect.value = product.gemstone
     }
   }
+
+  onLoad()
 
   async function onReset() {
     txtName.value = ''
