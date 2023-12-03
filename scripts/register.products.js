@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const txtStockQuantity = document.getElementById('stockQuantity')
   const btnSave = document.getElementById('btnSave')
   const btnReset = document.getElementById('btnReset')
+  const btnGoBack = document.getElementById('btnGoBack')
 
   async function onSave() {
     const name = txtName.value
@@ -26,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   }
 
+  async function goBack() {
+    window.location.href = '../pages/products.html'
+  }
+
   async function onReset() {
     txtName.value = ''
     txtDescription.value = ''
@@ -34,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
     gemstoneSelect.value = ''
     txtStockQuantity.value = ''
   }
+
+  btnGoBack.addEventListener('click', function(e) {
+    e.preventDefault()
+    goBack()
+  })
 
   btnSave.addEventListener('click', function(e) {
     e.preventDefault()

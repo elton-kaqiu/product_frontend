@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const txtStockQuantity = document.getElementById('stockQuantity')
   const btnSave = document.getElementById('btnSave')
   const btnReset = document.getElementById('btnReset')
+
   async function onSave() {
     const productId = window.location.search.split('=')[1].trim()
     const apiProduct = new ApiProducts()
@@ -41,6 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   onLoad()
 
+  async function goBack() {
+    window.location.href = '../pages/products.html'
+  }
+
   async function onReset() {
     txtName.value = ''
     txtDescription.value = ''
@@ -50,8 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
     txtStockQuantity.value = ''
   }
 
+  btnGoBack.addEventListener('click', function(e) {
+    e.preventDefault()
+    goBack()
+  })
 
-  onLoad()
   btnSave.addEventListener('click', function(e) {
     e.preventDefault()
     onSave()
