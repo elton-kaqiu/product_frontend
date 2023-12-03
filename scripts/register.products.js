@@ -5,9 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const metalTypeSelect = document.getElementById('txtMetalType')
   const gemstoneSelect = document.getElementById('txtGemstone')
   const txtStockQuantity = document.getElementById('stockQuantity')
+  const txtDateRegistered = document.getElementById('txtDate')
+  const txtRegisteredBy = document.getElementById('txtRegisteredBy')
   const btnSave = document.getElementById('btnSave')
   const btnReset = document.getElementById('btnReset')
   const btnGoBack = document.getElementById('btnGoBack')
+
 
   async function onSave() {
     const name = txtName.value
@@ -16,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const metalType = metalTypeSelect.value
     const gemstone = gemstoneSelect.value
     const stockQuantity = txtStockQuantity.value
-    if (!name || !description || !price || !metalType || !gemstone || !stockQuantity) {
+    const registeredDate = txtDateRegistered.value
+    const registeredBy = txtRegisteredBy.value
+    if (!name || !description || !price || !metalType || !gemstone || !stockQuantity || !registeredDate || !registeredBy) {
       alert('Please fill in all required fields.')
       return
     }
-    const product = new Product(0, name, description, price, metalType, gemstone, stockQuantity)
+    const product = new Product(0, name, description, price, metalType, gemstone, stockQuantity, registeredDate, registeredBy)
     const apiProduct = new ApiProducts()
     await apiProduct.register(product)
     window.location.href = '../pages/products.html'
@@ -38,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
     metalTypeSelect.value = ''
     gemstoneSelect.value = ''
     txtStockQuantity.value = ''
+    txtDateRegistered.value = ''
+    txtRegisteredBy.value = ''
   }
 
   btnGoBack.addEventListener('click', function(e) {

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const metalTypeSelect = document.getElementById('txtMetalType')
   const gemstoneSelect = document.getElementById('txtGemstone')
   const txtStockQuantity = document.getElementById('stockQuantity')
+  const txtDateRegistered = document.getElementById('txtDate')
+  const txtUpdatedBy = document.getElementById('txtUpdatedBy')
   const btnSave = document.getElementById('btnSave')
   const btnReset = document.getElementById('btnReset')
 
@@ -17,11 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const metalType = metalTypeSelect.value
     const gemstone = gemstoneSelect.value
     const stockQuantity = txtStockQuantity.value
-    if (!name || !description || !price || !metalType || !gemstone || !stockQuantity) {
+    const registeredDate = txtDateRegistered.value
+    const updatedBy = txtUpdatedBy.value
+
+    if (!name || !description || !price || !metalType || !gemstone || !stockQuantity || !registeredDate || !updatedBy) {
       alert('Please fill in all required fields.')
       return
     }
-    const product = new Product(productId, name, description, price, metalType, gemstone, stockQuantity)
+    const product = new Product(productId, name, description, price, metalType, gemstone, stockQuantity, registeredDate, updatedBy)
     await apiProduct.update(productId, product)
     window.location.href = '../pages/products.html'
   }
@@ -37,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
       txtStockQuantity.value = product.stockQuantity
       metalTypeSelect.value = product.metalType
       gemstoneSelect.value = product.gemstone
+      txtDateRegistered.value = product.registeredDate
+      txtUpdatedBy.value = product.registeredBy
     }
   }
 
@@ -53,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     metalTypeSelect.value = ''
     gemstoneSelect.value = ''
     txtStockQuantity.value = ''
+    txtUpdatedBy.value = ''
   }
 
   btnGoBack.addEventListener('click', function(e) {
