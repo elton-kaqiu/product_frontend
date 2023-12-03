@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
       metalTypeSelect.value = product.metalType
       gemstoneSelect.value = product.gemstone
       txtDateRegistered.value = product.registeredDate
-      txtUpdatedBy.value = product.registeredBy
+      txtUpdatedBy.value = ''
     }
   }
 
